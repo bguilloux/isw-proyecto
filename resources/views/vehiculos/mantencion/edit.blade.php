@@ -1,0 +1,41 @@
+@extends ('layouts.admin')
+@section ('contenido')
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<h3>Editar Usuario: {{ $categoria->nombre}}</h3>
+			@if (count($errors)>0)
+			<div class="alert alert-danger">
+				<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{$error}}</li>
+				@endforeach
+				</ul>
+			</div>
+			@endif
+
+			{!!Form::model($categoria,['method'=>'PATCH','route'=>[vehiculos.mantencion.update',$categoria->patente]])!!}
+            {{Form::token()}}
+            <div class="form-group">
+            	<label for="patente">Rut Usuario</label>
+            	<input type="text" name="patente" class="form-control" placeholder="patente...">
+            </div>
+         	<div class="form-group">
+            	<label for="nombre">Nombre</label>
+            	<input type="text" name="nombre" class="form-control" placeholder="Nombre...">
+            </div>
+
+             <div class="form-group">
+            	<label for="pass">Password</label>
+            	<input type="password" name="pass" class="form-control" placeholder="Pass...">
+
+            	 <div class="form-group">
+            	<label for="tipo_usuario">Tipo Usuario</label>
+            	<input type="number" name="tipo_usuario" class="form-control" placeholder="Tipo Usuario...">
+            </div>
+
+			{!!Form::close()!!}		
+            
+		</div>
+	</div>
+@endsection
+
